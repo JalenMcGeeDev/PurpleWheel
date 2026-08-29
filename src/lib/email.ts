@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import type { Reservation, Popup, HostInquiry } from '../types';
 import { format } from 'date-fns';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 const FROM = 'The Purple Wheel <noreply@purplewheel.store>';
 const SUNSHINE = 'sunshine.alv5@gmail.com';
 
@@ -28,7 +28,7 @@ export async function sendReservationConfirmation(
     ? '✓ You\'re bringing your own container — 10% discount applied to estimate.'
     : 'No container — a $2.00 jar deposit will be collected at the popup.';
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: reservation.email,
     subject: `Your reservation is confirmed — ${popup.title} on ${dateStr}`,
@@ -85,7 +85,7 @@ export async function sendReservationNotification(
     .map((i) => `• ${i.productName}: ~${i.requestedAmount} ${i.unit.replace('per ', '')}`)
     .join('\n');
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: SUNSHINE,
     subject: `New reservation ${reservation.orderCode} — ${popup.title} ${dateStr}`,
@@ -100,7 +100,7 @@ export async function sendReservationNotification(
 }
 
 export async function sendHostInquiryNotification(inquiry: HostInquiry): Promise<void> {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: SUNSHINE,
     subject: `New hosting inquiry — ${inquiry.organization}`,
@@ -121,7 +121,7 @@ export async function sendProductRequestNotification(
   submitterName: string | undefined,
   email: string | undefined,
 ): Promise<void> {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: SUNSHINE,
     subject: `New product request: ${productName}`,
@@ -140,7 +140,7 @@ export async function sendPopupReminder(
   popup: Popup,
 ): Promise<void> {
   const timeStr = format(new Date(popup.startsAt), 'h:mm a');
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: reservation.email,
     subject: `Reminder: your refill pickup is today — ${popup.venueName}`,
@@ -160,3 +160,4 @@ export async function sendPopupReminder(
     `,
   });
 }
+
