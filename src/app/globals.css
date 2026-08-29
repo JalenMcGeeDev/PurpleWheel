@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+@theme {
+  --color-purple: #8B5CF6;
+  --color-purple-deep: #4C1D95;
+  --color-purple-darker: #3B1E7A;
+  --color-lilac: #DDD3FB;
+  --color-cream: #FAF6EE;
+  --color-ink: #1A1A1A;
+
+  --font-heading: 'Lora', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  background-color: #FAF6EE;
+  color: #1A1A1A;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* Ensure hidden attribute always wins over author display rules */
+[hidden] { display: none !important; }
+
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: #fff; }
+}
+
+.print-only { display: none; }

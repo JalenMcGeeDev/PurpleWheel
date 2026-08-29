@@ -1,46 +1,54 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import { Lora, Inter } from 'next/font/google';
+import './globals.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { siteSettings } from '../data/siteSettings';
+import { getUpcomingPopups } from '../lib/db';
+
+const lora = Lora({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+});
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Sunny's Garden — Handcrafted Cedar Planter Boxes",
-    template: "%s | Sunny's Garden",
+    default: 'The Purple Wheel — Refillery serving Raleigh, Durham & Chapel Hill',
+    template: '%s | The Purple Wheel',
+  },
+  icons: {
+    icon: [
+      { url: '/images/logo-spiral-purple.png', media: '(prefers-color-scheme: light)' },
+      { url: '/images/logo-spiral-white.png', media: '(prefers-color-scheme: dark)' },
+    ],
   },
   description:
-    "Handcrafted cedar planter boxes, made to order. The Sunny Collection features raised planters built with western red cedar using traditional frame-and-panel joinery.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sunnys.garden"),
+    'A mobile refillery bringing bulk pantry staples, home goods, and body care to Raleigh, Durham, and Chapel Hill. Bring your own jar — pay by weight.',
+  keywords: ['refill store Raleigh', 'zero waste Durham', 'refillery Chapel Hill', 'bulk refill NC', 'zero waste grocery'],
   openGraph: {
-    title: "Sunny's Garden — Handcrafted Cedar Planter Boxes",
-    description:
-      "Handcrafted cedar planter boxes, made to order. Built with western red cedar using traditional frame-and-panel joinery.",
-    url: "/",
-    siteName: "Sunny's Garden",
-    locale: "en_US",
-    type: "website",
+    siteName: 'The Purple Wheel',
+    locale: 'en_US',
+    type: 'website',
+    images: [{ url: '/images/logo-og.png', width: 1080, height: 1080, alt: 'The Purple Wheel' }],
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const upcoming = await getUpcomingPopups().catch(() => []);
+  const nextPopup = upcoming[0];
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased bg-white text-stone-900`}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+    <html lang="en" className={`${lora.variable} ${inter.variable}`}>
+      <body className="min-h-screen flex flex-col bg-cream">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer nextPopup={nextPopup} settings={siteSettings} />
       </body>
     </html>
   );

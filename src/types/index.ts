@@ -1,86 +1,89 @@
-export interface ProductPhoto {
+export interface Popup {
   id: string;
-  url: string;
-  alt: string;
-  sortOrder: number;
+  title: string;
+  startsAt: string;
+  endsAt: string;
+  venueName: string;
+  address: string;
+  city: 'Raleigh' | 'Durham' | 'Chapel Hill' | 'Other';
+  notes?: string;
+  preordersEnabled: boolean;
+  preorderCutoff: string;
+  status: 'scheduled' | 'cancelled';
+  geo?: { lat: number; lng: number };
 }
 
 export interface Product {
   id: string;
-  slug: string;
   name: string;
-  tagline: string;
+  category: 'Pantry' | 'Home' | 'Body';
+  unit: 'per lb' | 'per oz' | 'per fl oz' | 'each';
+  pricePerUnit: number;
   description: string;
-  width: string;
-  height: string;
-  plantingDepth: string;
-  numRows: number;
-  configuration: string;
-  priceNoLegs: number;   // cents
-  priceWithLegs: number;  // cents
-  visible: boolean;
-  sortOrder: number;
-  photos: ProductPhoto[];
+  available: boolean;
+  taxable: boolean;
+  image?: string;
 }
 
-export type VariantType = "no-legs" | "with-legs";
-
-export type PaintOption = "none" | "solid" | "sunnys-choice";
-export type SolidColor = "white" | "black" | "green" | "gray" | "navy";
-
-export const SOLID_COLORS: { value: SolidColor; label: string; hex: string }[] = [
-  { value: "white", label: "White", hex: "#FFFFFF" },
-  { value: "black", label: "Black", hex: "#1a1a1a" },
-  { value: "green", label: "Hunter Green", hex: "#2d5a27" },
-  { value: "gray", label: "Slate Gray", hex: "#6b7280" },
-  { value: "navy", label: "Navy Blue", hex: "#1e3a5f" },
-];
-
-export interface CustomBuildConfig {
-  width: number;       // feet (1-8)
-  length: number;      // feet (1-8)
-  height: number;      // feet (1-3)
-  hasLegs: boolean;
-  hasBottom: boolean;
-  paintOption: PaintOption;
-  paintColor?: SolidColor; // selected color when paintOption === "solid"
+export interface ReservationItem {
+  productId: string;
+  productName: string;
+  requestedAmount: number;
+  unit: string;
+  pricePerUnit: number;
+  estimatedCost: number;
 }
 
-export interface QuoteRequest {
-  name: string;
+export interface Reservation {
+  id: string;
+  orderCode: string;
+  popupId: string;
+  customerName: string;
   email: string;
   phone?: string;
-  notes?: string;
-  config: CustomBuildConfig;
-}
-
-export interface AboutContent {
-  headline: string;
-  body: string;             // HTML string
-  primaryPhotoUrl: string;
-  secondaryPhotoUrl?: string;
-}
-
-export interface Order {
-  id: string;
-  stripeSessionId: string;
-  stripePaymentIntentId: string;
-  customerName: string;
-  customerEmail: string;
-  customerPhone?: string;
-  shippingAddress: {
-    line1: string;
-    line2?: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    country: string;
-  };
-  productName: string;
-  productVariant: string;
-  amountTotal: number;      // cents
-  status: "New" | "In Progress" | "Shipped" | "Delivered" | "Cancelled";
-  trackingNumber?: string;
-  adminNotes?: string;
+  items: ReservationItem[];
+  bringingOwnContainer: boolean;
+  estimatedTotal: number;
+  status: 'new' | 'prepped' | 'collected' | 'no-show';
   createdAt: string;
+}
+
+export interface HostInquiry {
+  id: string;
+  name: string;
+  organization: string;
+  email: string;
+  phone?: string;
+  locationType: 'office' | 'apartment community' | 'retail' | 'other';
+  estimatedAudience?: string;
+  message: string;
+  createdAt: string;
+}
+
+export interface ProductRequest {
+  id: string;
+  productName: string;
+  category?: string;
+  notes?: string;
+  email?: string;
+  submitterName?: string;
+  createdAt: string;
+}
+
+export interface SiteSettings {
+  tagline: string;
+  discountPercentage: number;
+  contactEmail: string;
+  instagramHandle: string;
+  jarDepositAmount: number;
+}
+
+export interface POSTransaction {
+  id: string;
+  squareTransactionId?: string;
+  amountCents: number;
+  popupId?: string;
+  status: 'pending' | 'completed' | 'cancelled' | 'failed';
+  createdAt: string;
+  completedAt?: string;
 }

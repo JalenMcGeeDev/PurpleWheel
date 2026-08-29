@@ -1,63 +1,120 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import { getAboutContent } from "@/lib/data";
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Learn about Sunny's Garden — handcrafted cedar planter boxes built with western red cedar using traditional frame-and-panel joinery.",
+  title: 'About',
+  description: "Sunshine's story — why she started The Purple Wheel and what a mobile refillery means for the Triangle.",
 };
 
-export default async function AboutPage() {
-  const content = await getAboutContent();
-
+export default function AboutPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <div className="max-w-4xl mx-auto">
-        {/* Headline */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 mb-8 sm:mb-12">
-          {content.headline}
-        </h1>
-
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Body Content */}
-          <div className="lg:col-span-3">
-            <div
-              className="prose prose-stone prose-lg max-w-none
-                [&_p]:text-stone-700 [&_p]:leading-relaxed [&_p]:mb-5
-                [&_strong]:text-stone-900
-                [&_ul]:text-stone-700 [&_ol]:text-stone-700"
-              dangerouslySetInnerHTML={{ __html: content.body }}
-            />
-          </div>
-
-          {/* Photos */}
-          <div className="lg:col-span-2 space-y-4">
-            {content.primaryPhotoUrl && (
-              <div className="aspect-[3/4] relative rounded-2xl overflow-hidden bg-stone-100">
-                <Image
-                  src={content.primaryPhotoUrl}
-                  alt="Sunny's Garden workshop"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                />
-              </div>
-            )}
-            {content.secondaryPhotoUrl && (
-              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden bg-stone-100">
-                <Image
-                  src={content.secondaryPhotoUrl}
-                  alt="Cedar wood detail"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                />
-              </div>
-            )}
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      {/* Hero */}
+      <div className="grid sm:grid-cols-2 gap-10 items-start mb-14">
+        <div>
+          <h1 className="font-heading text-4xl text-purple-deep mb-4">Hey, I'm Sunshine</h1>
+          <p className="text-ink/80 text-lg leading-relaxed mb-4">
+            I started The Purple Wheel because I couldn't find a way to buy laundry detergent
+            without throwing away a plastic jug every few weeks — and I figured I wasn't the only one.
+          </p>
+          <p className="text-ink/70 leading-relaxed">
+            Bulk refill stores exist, but they're usually one location on one side of town. That
+            works for some people and not at all for others. A van that comes to you works for
+            more people — at the farmers market, at your apartment complex, at your office.
+          </p>
+        </div>
+        <div className="bg-lilac/30 rounded-2xl aspect-square flex items-center justify-center border border-lilac">
+          {/* Replace this div with: <Image src="/images/about/sunshine.jpg" alt="Sunshine" fill className="object-cover rounded-2xl" /> */}
+          <div className="text-center text-ink/30 text-sm p-8">
+            <div className="text-5xl mb-3">🌻</div>
+            <p>Photo coming soon</p>
+            <p className="text-xs mt-1">(drop <code>public/images/about/sunshine.jpg</code>)</p>
           </div>
         </div>
       </div>
+
+      {/* Story */}
+      <section className="space-y-5 text-ink/80 leading-relaxed mb-12">
+        <h2 className="font-heading text-2xl text-purple-deep">The origin</h2>
+        <p>
+          The name came from the two things I love most: the color purple (obviously) and the
+          idea of a wheel — something that keeps moving, keeps coming back, keeps showing up
+          in your neighborhood. The logo is a wheel. The van is purple. The name stuck.
+        </p>
+        <p>
+          I launched in 2024 with a handful of pantry staples and a farmers market booth.
+          Within a few months I was getting messages from apartment managers, office HR teams,
+          and local shops asking if I could come to them. That's when I understood what this
+          could be.
+        </p>
+        <p>
+          Now The Purple Wheel serves Raleigh, Durham, and Chapel Hill. I run every popup
+          myself, I know most of my regulars by name, and I still get a small thrill every
+          time someone refills a jar they've been using for two years.
+        </p>
+      </section>
+
+      {/* Why refills */}
+      <section className="bg-lilac/20 rounded-2xl p-8 border border-lilac mb-12">
+        <h2 className="font-heading text-2xl text-purple-deep mb-4">Why refills?</h2>
+        <div className="space-y-4 text-ink/80 leading-relaxed text-sm">
+          <p>
+            The average American throws away more than 100 plastic bottles a year — and that's
+            just personal care products. Add cleaning supplies, pantry packaging, and single-use
+            bags, and the number climbs fast.
+          </p>
+          <p>
+            Refilling isn't a sacrifice. It's usually cheaper per ounce than branded alternatives,
+            you get exactly the amount you need, and you end up with one jar you use forever
+            instead of a recycling bin full of things you hope get recycled.
+          </p>
+          <p>
+            I'm not asking anyone to overhaul their life. Just: next time you run out of dish
+            soap, try filling the same bottle instead of buying a new one.
+          </p>
+        </div>
+      </section>
+
+      {/* Service area */}
+      <section className="mb-12">
+        <h2 className="font-heading text-2xl text-purple-deep mb-4">Where we go</h2>
+        <p className="text-ink/70 mb-6">
+          The Purple Wheel currently serves the Triangle with regular stops in all three cities.
+          Want a popup in your neighborhood or at your building?{' '}
+          <a href="/host" className="text-purple underline">Get in touch</a>.
+        </p>
+        <div className="grid grid-cols-3 gap-4">
+          {['Raleigh', 'Durham', 'Chapel Hill'].map((city) => (
+            <div key={city} className="bg-white rounded-xl border border-lilac p-5 text-center">
+              <p className="font-heading text-lg text-purple-deep">{city}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="bg-purple-deep text-white rounded-2xl p-8">
+        <h2 className="font-heading text-2xl mb-2">Say hello</h2>
+        <p className="text-lilac/80 mb-5 text-sm">
+          Questions, press inquiries, partnership ideas, or just want to talk zero waste — I'd
+          love to hear from you.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href="mailto:sunshine.alv5@gmail.com"
+            className="px-5 py-3 bg-purple text-white font-semibold rounded-xl hover:bg-purple/80 transition-colors text-center text-sm"
+          >
+            sunshine.alv5@gmail.com
+          </a>
+          <a
+            href="https://instagram.com/thepurplewheel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors text-center text-sm"
+          >
+            @thepurplewheel
+          </a>
+        </div>
+      </section>
     </div>
   );
 }
