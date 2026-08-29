@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
 import { getProducts, getAllPopups } from '../../../lib/db';
 import Calculator from './Calculator';
 

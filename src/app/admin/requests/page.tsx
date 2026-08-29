@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 import { getProductRequests } from '../../../lib/db';
 
 export const metadata: Metadata = {

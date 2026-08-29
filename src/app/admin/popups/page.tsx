@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
 import { getAllPopups } from '../../../lib/db';
 
 export const metadata: Metadata = { title: 'Popups — Admin', robots: { index: false, follow: false } };

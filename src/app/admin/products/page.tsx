@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 import { getProducts } from '../../../lib/db';
 import ProductsClient from './ProductsClient';
 

@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { getAllPopups } from '../../../lib/db';
 
