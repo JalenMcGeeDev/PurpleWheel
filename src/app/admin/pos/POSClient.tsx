@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { createSupabaseBrowserClient } from '../../../lib/supabase-browser';
 import { buildSquarePOSData } from '../../../lib/square';
 
 type State = 'loading' | 'ready' | 'opening' | 'failed';
@@ -20,13 +19,9 @@ export default function POSClient() {
   useEffect(() => {
     if (!amountCents) return;
     (async () => {
-      const supabase = createSupabaseBrowserClient();
-      const { data: { session } } = await supabase.auth.getSession();
-      const token = session?.access_token ?? '';
-
       const res = await fetch('/api/admin/pos/checkout', {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ amountCents, popupId }),
       });
       const data = await res.json();

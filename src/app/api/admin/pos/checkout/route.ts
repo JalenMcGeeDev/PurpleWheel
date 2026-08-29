@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
-import { validateAdminToken } from '../../../../../lib/supabase-auth';
 import { savePOSTransaction } from '../../../../../lib/db';
 import type { POSTransaction } from '../../../../../types';
 
 export async function POST(req: NextRequest) {
-  if (!await validateAdminToken(req)) {
-    return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
-  }
-
   const { amountCents, popupId } = await req.json() as { amountCents: number; popupId?: string };
 
   if (!Number.isInteger(amountCents) || amountCents <= 0) {
