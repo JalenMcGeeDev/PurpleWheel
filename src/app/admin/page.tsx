@@ -32,6 +32,7 @@ export default function AdminPage() {
           <Link
             key={href}
             href={href}
+            prefetch={false}
             className="flex items-center gap-5 bg-white rounded-2xl border border-lilac p-6 hover:border-purple transition-colors"
           >
             <span className="text-3xl">{emoji}</span>
