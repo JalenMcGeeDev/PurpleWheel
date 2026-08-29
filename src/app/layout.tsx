@@ -1,10 +1,17 @@
 import type { Metadata } from 'next';
 import { Lora, Inter } from 'next/font/google';
+import { unstable_cache } from 'next/cache';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { siteSettings } from '../data/siteSettings';
 import { getUpcomingPopups } from '../lib/db';
+
+const getCachedNextPopup = unstable_cache(
+  async () => { const all = await getUpcomingPopups(); return all[0] ?? null; },
+  ['layout-next-popup'],
+  { revalidate: 300 }, // re-fetch at most every 5 minutes
+);
 
 const lora = Lora({
   subsets: ['latin'],
@@ -41,8 +48,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const upcoming = await getUpcomingPopups().catch(() => []);
-  const nextPopup = upcoming[0];
+  const nextPopup = await getCachedNextPopup().catch(() => null);
   return (
     <html lang="en" className={`${lora.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col bg-cream">
