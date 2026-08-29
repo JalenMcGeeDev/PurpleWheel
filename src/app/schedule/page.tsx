@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { format, isFuture } from 'date-fns';
+
+export const dynamic = 'force-dynamic';
 import { getAllPopups } from '../../lib/db';
 
 export const metadata: Metadata = {

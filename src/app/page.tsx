@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import NextPopupCard from '../components/NextPopupCard';
+
+export const dynamic = 'force-dynamic';
 import { getUpcomingPopups, getProducts } from '../lib/db';
 import { siteSettings } from '../data/siteSettings';
 
