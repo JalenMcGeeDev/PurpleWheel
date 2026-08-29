@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const nextPopup = await getCachedNextPopup().catch(() => null);
+  const nextPopup = await getCachedNextPopup().catch(() => null) ?? undefined;
   return (
     <html lang="en" className={`${lora.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col bg-cream">
