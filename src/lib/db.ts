@@ -127,7 +127,7 @@ export async function getAllPopups(): Promise<Popup[]> {
 export async function getUpcomingPopups(): Promise<Popup[]> {
   const all = await getAllPopups();
   const now = new Date();
-  return all.filter((p) => p.status === 'scheduled' && new Date(p.startsAt) > now);
+  return all.filter((p) => p.status === 'scheduled' && new Date(p.endsAt) > now);
 }
 
 export async function getPopupById(id: string): Promise<Popup | null> {

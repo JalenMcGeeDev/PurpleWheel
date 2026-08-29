@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import ReservationForm from '../../components/ReservationForm';
+
+export const dynamic = 'force-dynamic';
 import { getUpcomingPopups, getProducts } from '../../lib/db';
 import { siteSettings } from '../../data/siteSettings';
 
