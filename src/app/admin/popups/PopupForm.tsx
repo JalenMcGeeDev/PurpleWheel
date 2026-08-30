@@ -155,14 +155,13 @@ export default function PopupForm({ popup, onSuccess }: PopupFormProps) {
       </label>
 
       <div className="bg-lilac/20 rounded-xl p-4 flex items-start gap-3">
-        <button
-          type="button"
+        <div
           onClick={() => set('isPublic', !form.isPublic)}
-          className={`shrink-0 w-11 h-6 rounded-full relative transition-colors ${form.isPublic ? 'bg-purple' : 'bg-lilac'}`}
+          className={`shrink-0 relative w-12 h-7 rounded-full transition-colors cursor-pointer ${form.isPublic ? 'bg-purple' : 'bg-lilac'}`}
           aria-pressed={form.isPublic}
         >
-          <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${form.isPublic ? 'translate-x-5' : 'translate-x-0.5'}`} />
-        </button>
+          <span className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${form.isPublic ? 'translate-x-6' : 'translate-x-1'}`} />
+        </div>
         <div>
           <p className="text-sm font-medium text-ink">
             {form.isPublic ? 'Public popup' : 'Private popup'}

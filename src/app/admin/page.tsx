@@ -8,12 +8,11 @@ export const metadata: Metadata = {
 };
 
 const SECTIONS = [
-  { href: '/admin/calculator', emoji: '🧮', title: 'Price Calculator', desc: 'Calculate totals with tax at the table.' },
-  { href: '/admin/pos',        emoji: '💳', title: 'Point of Sale',    desc: 'Charge a customer via Square reader.' },
-  { href: '/admin/popups', emoji: '📅', title: 'Manage Popups', desc: 'Add, edit, or cancel popup events.' },
-  { href: '/admin/products', emoji: '🧴', title: 'Manage Products', desc: 'Toggle availability and update prices.' },
-  { href: '/admin/prep', emoji: '📋', title: 'Prep Lists', desc: 'View and print order lists by popup.' },
-  { href: '/admin/requests', emoji: '💡', title: 'Product Requests', desc: 'See what customers want to refill.' },
+  { href: '/admin/checkout',  emoji: '💳', title: 'Checkout',         desc: 'Enter weights, calculate totals, and charge via Square Terminal.' },
+  { href: '/admin/popups',    emoji: '📅', title: 'Manage Popups',    desc: 'Add, edit, or cancel popup events.' },
+  { href: '/admin/products',  emoji: '🧴', title: 'Manage Products',  desc: 'Toggle availability and update prices.' },
+  { href: '/admin/prep',      emoji: '📋', title: 'Prep Lists',       desc: 'View and print order lists by popup.' },
+  { href: '/admin/requests',  emoji: '💡', title: 'Product Requests', desc: 'See what customers want to refill.' },
 ];
 
 export default function AdminPage() {

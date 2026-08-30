@@ -58,12 +58,12 @@ export default function ProductsClient({ products: initial }: ProductsClientProp
                     onClick={() => patch(product.id, { available: !product.available })}
                     disabled={saving === product.id}
                     title={product.available ? 'Mark out of stock' : 'Mark available'}
-                    className={`shrink-0 w-10 h-6 rounded-full transition-colors relative ${
+                    className={`shrink-0 relative w-12 h-7 rounded-full transition-colors ${
                       product.available ? 'bg-purple' : 'bg-lilac'
                     } disabled:opacity-40`}
                   >
-                    <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
-                      product.available ? 'translate-x-4' : 'translate-x-0.5'
+                    <span className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
+                      product.available ? 'translate-x-6' : 'translate-x-1'
                     }`} />
                   </button>
 

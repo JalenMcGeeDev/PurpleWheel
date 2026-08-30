@@ -82,6 +82,7 @@ export interface SiteSettings {
 export interface POSTransaction {
   id: string;
   squareTransactionId?: string;
+  squareCheckoutId?: string;
   amountCents: number;
   popupId?: string;
   status: 'pending' | 'completed' | 'cancelled' | 'failed';

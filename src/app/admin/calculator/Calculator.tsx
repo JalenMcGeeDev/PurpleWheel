@@ -94,9 +94,9 @@ export default function Calculator({ products, popups }: CalculatorProps) {
                 : 'border-lilac text-ink/60 hover:border-purple/40'
             }`}
           >
-            <span className={`w-10 h-6 rounded-full relative transition-colors shrink-0 ${ownContainer ? 'bg-purple' : 'bg-lilac'}`}>
-              <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${ownContainer ? 'translate-x-4' : 'translate-x-0.5'}`} />
-            </span>
+            <div className={`relative w-12 h-7 rounded-full transition-colors shrink-0 ${ownContainer ? 'bg-purple' : 'bg-lilac'}`}>
+              <span className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${ownContainer ? 'translate-x-6' : 'translate-x-1'}`} />
+            </div>
             {ownContainer ? '10% discount applied' : 'No discount'}
           </button>
         </div>

@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
 
   const tx: POSTransaction = {
     id: txId,
+    squareCheckoutId: squareCheckoutId,
     amountCents,
     popupId,
     status: 'pending',

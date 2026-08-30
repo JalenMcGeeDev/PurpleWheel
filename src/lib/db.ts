@@ -226,13 +226,24 @@ export async function getProductRequests(): Promise<ProductRequest[]> {
 
 export async function savePOSTransaction(tx: POSTransaction): Promise<void> {
   const { error } = await getSupabase().from('pos_transactions').insert({
-    id:           tx.id,
-    amount_cents: tx.amountCents,
-    popup_id:     tx.popupId ?? null,
-    status:       tx.status,
-    created_at:   tx.createdAt,
+    id:                  tx.id,
+    square_checkout_id:  tx.squareCheckoutId ?? null,
+    amount_cents:        tx.amountCents,
+    popup_id:            tx.popupId ?? null,
+    status:              tx.status,
+    created_at:          tx.createdAt,
   });
   if (error) throw new Error(error.message);
+}
+
+export async function getPOSTransactionByCheckoutId(squareCheckoutId: string): Promise<POSTransaction | null> {
+  const { data, error } = await getSupabase()
+    .from('pos_transactions')
+    .select('*')
+    .eq('square_checkout_id', squareCheckoutId)
+    .maybeSingle();
+  if (error) return null;
+  return data ? rowToPOSTransaction(data as Record<string, unknown>) : null;
 }
 
 export async function updatePOSTransaction(
@@ -255,6 +266,7 @@ function rowToPOSTransaction(row: Record<string, unknown>): POSTransaction {
   return {
     id:                   row.id as string,
     squareTransactionId:  (row.square_transaction_id as string | null) ?? undefined,
+    squareCheckoutId:     (row.square_checkout_id as string | null) ?? undefined,
     amountCents:          Number(row.amount_cents),
     popupId:              (row.popup_id as string | null) ?? undefined,
     status:               row.status as POSTransaction['status'],

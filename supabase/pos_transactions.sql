@@ -3,6 +3,7 @@
 CREATE TABLE IF NOT EXISTS pos_transactions (
   id                    TEXT        PRIMARY KEY,
   square_transaction_id TEXT,
+  square_checkout_id    TEXT,
   amount_cents          INTEGER     NOT NULL,
   popup_id              TEXT,
   status                TEXT        NOT NULL DEFAULT 'pending',
