@@ -97,8 +97,8 @@ export default function ReservationForm({
     [form.items],
   );
 
-  const discount = form.bringingOwnContainer ? subtotal * (discountPercentage / 100) : 0;
-  const estimatedTotal = subtotal - discount + (form.bringingOwnContainer ? 0 : jarDepositAmount);
+  const discount = 0;
+  const estimatedTotal = subtotal + (form.bringingOwnContainer ? 0 : jarDepositAmount);
 
   function setAmount(productId: string, value: string) {
     setAmounts((prev) => ({ ...prev, [productId]: value }));
@@ -414,12 +414,6 @@ export default function ReservationForm({
                 <span>Subtotal ({form.items.length} items)</span>
                 <span>~${subtotal.toFixed(2)}</span>
               </div>
-              {form.bringingOwnContainer && (
-                <div className="flex justify-between text-purple">
-                  <span>Container discount ({discountPercentage}%)</span>
-                  <span>-${discount.toFixed(2)}</span>
-                </div>
-              )}
               {!form.bringingOwnContainer && (
                 <div className="flex justify-between">
                   <span>Jar deposit (refundable)</span>

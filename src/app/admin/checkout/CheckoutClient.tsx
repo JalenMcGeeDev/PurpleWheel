@@ -19,9 +19,8 @@ const CATEGORIES = ['Pantry', 'Home', 'Body'] as const;
 
 export default function CheckoutClient({ products, popups }: Props) {
   // Entry state
-  const [popupId,      setPopupId]      = useState(popups[0]?.id ?? '');
-  const [ownContainer, setOwnContainer] = useState(false);
-  const [amounts,      setAmounts]      = useState<Record<string, string>>({});
+  const [popupId,  setPopupId]  = useState(popups[0]?.id ?? '');
+  const [amounts,  setAmounts]  = useState<Record<string, string>>({});
 
   // Payment state
   const [phase,           setPhase]           = useState<Phase>('entry');
@@ -40,24 +39,20 @@ export default function CheckoutClient({ products, popups }: Props) {
 
   const selectedPopup = popups.find((p) => p.id === popupId);
   const taxRate = TAX_RATES[selectedPopup?.city ?? 'Other'] ?? 0.075;
-  const discountRate = ownContainer ? 0.1 : 0;
 
   const lines = useMemo(() => products
     .filter((p) => p.available && parseFloat(amounts[p.id] || '0') > 0)
     .map((p) => {
       const amount = parseFloat(amounts[p.id]);
       const base   = amount * p.pricePerUnit;
-      const sale   = base * (1 - discountRate);
-      const tax    = p.taxable ? sale * taxRate : 0;
-      return { product: p, amount, base, sale, tax };
-    }), [products, amounts, discountRate, taxRate]);
+      const tax    = p.taxable ? base * taxRate : 0;
+      return { product: p, amount, base, sale: base, tax };
+    }), [products, amounts, taxRate]);
 
-  const subtotalRaw          = lines.reduce((s, l) => s + l.base, 0);
-  const discountAmount       = subtotalRaw * discountRate;
-  const subtotalAfterDiscount = subtotalRaw - discountAmount;
-  const totalTax             = lines.reduce((s, l) => s + l.tax, 0);
-  const grandTotal           = subtotalAfterDiscount + totalTax;
-  const grandTotalCents      = Math.round(grandTotal * 100);
+  const subtotalRaw = lines.reduce((s, l) => s + l.base, 0);
+  const totalTax    = lines.reduce((s, l) => s + l.tax, 0);
+  const grandTotal  = subtotalRaw + totalTax;
+  const grandTotalCents = Math.round(grandTotal * 100);
 
   function setAmount(id: string, val: string) {
     setAmounts((prev) => ({ ...prev, [id]: val }));
@@ -65,7 +60,6 @@ export default function CheckoutClient({ products, popups }: Props) {
 
   function clear() {
     setAmounts({});
-    setOwnContainer(false);
   }
 
   function startPayment() {
@@ -283,38 +277,19 @@ export default function CheckoutClient({ products, popups }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* Popup + container */}
-      <div className="bg-white rounded-2xl border border-lilac p-5 grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="block text-xs font-semibold uppercase tracking-widest text-ink/50 mb-2">
-            Popup location
-          </label>
-          <select value={popupId} onChange={(e) => setPopupId(e.target.value)} className={inputCls}>
-            {popups.map((p) => (
-              <option key={p.id} value={p.id}>{p.title} - {p.city}</option>
-            ))}
-          </select>
-          <p className="text-xs text-ink/50 mt-1.5">
-            Tax rate: <strong>{(taxRate * 100).toFixed(2)}%</strong> ({selectedPopup?.city ?? '-'})
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-center">
-          <label className="block text-xs font-semibold uppercase tracking-widest text-ink/50 mb-3">
-            Own container?
-          </label>
-          <label className="flex items-center gap-3 cursor-pointer select-none">
-            <div
-              onClick={() => setOwnContainer((v) => !v)}
-              className={`relative w-12 h-7 rounded-full transition-colors shrink-0 cursor-pointer ${ownContainer ? 'bg-purple' : 'bg-lilac'}`}
-            >
-              <span className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${ownContainer ? 'translate-x-6' : 'translate-x-1'}`} />
-            </div>
-            <span className="text-sm font-medium text-ink">
-              {ownContainer ? '10% discount applied' : 'No discount'}
-            </span>
-          </label>
-        </div>
+      {/* Popup */}
+      <div className="bg-white rounded-2xl border border-lilac p-5">
+        <label className="block text-xs font-semibold uppercase tracking-widest text-ink/50 mb-2">
+          Popup location
+        </label>
+        <select value={popupId} onChange={(e) => setPopupId(e.target.value)} className={inputCls}>
+          {popups.map((p) => (
+            <option key={p.id} value={p.id}>{p.title} - {p.city}</option>
+          ))}
+        </select>
+        <p className="text-xs text-ink/50 mt-1.5">
+          Tax rate: <strong>{(taxRate * 100).toFixed(2)}%</strong> ({selectedPopup?.city ?? '-'})
+        </p>
       </div>
 
       {/* Products */}
@@ -373,16 +348,17 @@ export default function CheckoutClient({ products, popups }: Props) {
           <div className="space-y-1 text-sm">
             {lines.map((l) => (
               <div key={l.product.id} className="flex justify-between text-ink/70">
-                <span>{l.product.name} <span className="text-ink/40">({l.amount} {l.product.unit.replace('per ', '')})</span></span>
+                <span>
+                  {l.product.name}{' '}
+                  <span className="text-ink/40">({l.amount} {l.product.unit.replace('per ', '')})</span>
+                  {l.product.taxable
+                    ? <span className="ml-1.5 text-xs text-purple/60">+tax</span>
+                    : <span className="ml-1.5 text-xs text-ink/30">no tax</span>
+                  }
+                </span>
                 <span>${l.sale.toFixed(2)}</span>
               </div>
             ))}
-            {ownContainer && (
-              <div className="flex justify-between text-purple border-t border-lilac pt-2 mt-2">
-                <span>Container discount (10%)</span>
-                <span>-${discountAmount.toFixed(2)}</span>
-              </div>
-            )}
             <div className="border-t border-lilac pt-2 mt-2">
               <div className="flex justify-between text-ink/70">
                 <span>Sales tax ({(taxRate * 100).toFixed(2)}%)</span>

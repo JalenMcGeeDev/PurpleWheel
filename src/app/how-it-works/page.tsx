@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'How It Works',
-  description: 'Everything a first-timer needs to know about refilling at The Purple Wheel - containers, tare weights, what to bring, and the 10% own-container discount.',
+  description: 'Everything a first-timer needs to know about refilling at The Purple Wheel - containers, tare weights, what to bring, and how pricing works.',
 };
 
 const SECTIONS = [
@@ -31,11 +31,6 @@ const SECTIONS = [
     id: 'pricing',
     heading: 'How pricing works',
     body: `Everything is priced per pound, per ounce, or per fluid ounce - posted on a board at the popup. You decide how much to take. There are no fixed sizes.\n\nYou pay at the end, once we've weighed your filled container and subtracted the tare. The pre-order estimate on the website is based on the amount you requested - the actual price may vary slightly depending on how much you take.`,
-  },
-  {
-    id: 'discount',
-    heading: 'Bring your own container and save 10%',
-    body: `If you bring your own container (any clean jar or bottle), we knock 10% off your total. It's our way of saying thank you for reducing waste - and it adds up quickly if you're buying a few items.\n\nIf you don't have a container, you can borrow a jar for a small refundable deposit. Return it at the next popup and get your deposit back.`,
   },
   {
     id: 'reserve',

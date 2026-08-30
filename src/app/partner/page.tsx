@@ -17,7 +17,7 @@ const STEPS = [
   {
     number: '2',
     heading: 'Residents shop or pre-order.',
-    body: 'Fill on the spot, or order ahead on our site and grab a bag that\'s ready. Bring your own container, save 10%.',
+    body: 'Fill on the spot, or order ahead on our site and have your order ready when you arrive.',
   },
   {
     number: '3',

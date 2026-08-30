@@ -22,12 +22,10 @@ const CATEGORIES = ['Pantry', 'Home', 'Body'] as const;
 export default function Calculator({ products, popups }: CalculatorProps) {
   const router = useRouter();
   const [popupId, setPopupId] = useState(popups[0]?.id ?? '');
-  const [ownContainer, setOwnContainer] = useState(false);
   const [amounts, setAmounts] = useState<Record<string, string>>({});
 
   const selectedPopup = popups.find((p) => p.id === popupId);
   const taxRate = TAX_RATES[selectedPopup?.city ?? 'Other'] ?? 0.075;
-  const discountRate = ownContainer ? 0.1 : 0;
 
   const lines = useMemo(() => {
     return products
@@ -35,18 +33,15 @@ export default function Calculator({ products, popups }: CalculatorProps) {
       .map((p) => {
         const amount = parseFloat(amounts[p.id]);
         const base = amount * p.pricePerUnit;
-        const sale = base * (1 - discountRate);
-        const tax = p.taxable ? sale * taxRate : 0;
-        return { product: p, amount, base, sale, tax };
+        const tax = p.taxable ? base * taxRate : 0;
+        return { product: p, amount, base, sale: base, tax };
       });
-  }, [products, amounts, discountRate, taxRate]);
+  }, [products, amounts, taxRate]);
 
   const subtotalRaw = lines.reduce((s, l) => s + l.base, 0);
-  const discountAmount = subtotalRaw * discountRate;
-  const subtotalAfterDiscount = subtotalRaw - discountAmount;
   const taxableBase = lines.filter((l) => l.product.taxable).reduce((s, l) => s + l.sale, 0);
   const totalTax = lines.reduce((s, l) => s + l.tax, 0);
-  const grandTotal = subtotalAfterDiscount + totalTax;
+  const grandTotal = subtotalRaw + totalTax;
 
   function setAmount(id: string, val: string) {
     setAmounts((prev) => ({ ...prev, [id]: val }));
@@ -54,52 +49,30 @@ export default function Calculator({ products, popups }: CalculatorProps) {
 
   function clear() {
     setAmounts({});
-    setOwnContainer(false);
   }
 
   return (
     <div className="space-y-6">
 
-      {/* Popup + container row */}
-      <div className="bg-white rounded-2xl border border-lilac p-5 grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="block text-xs font-semibold uppercase tracking-widest text-ink/50 mb-2">
-            Popup location
-          </label>
-          <select
-            value={popupId}
-            onChange={(e) => setPopupId(e.target.value)}
-            className="w-full border border-lilac rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple"
-          >
-            {popups.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.title} - {p.city}
-              </option>
-            ))}
-          </select>
-          <p className="text-xs text-ink/50 mt-1.5">
-            Tax rate: <strong>{(taxRate * 100).toFixed(2)}%</strong> ({selectedPopup?.city ?? '-'})
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-center">
-          <label className="block text-xs font-semibold uppercase tracking-widest text-ink/50 mb-3">
-            Own container?
-          </label>
-          <button
-            onClick={() => setOwnContainer((v) => !v)}
-            className={`flex items-center gap-3 px-5 py-3 rounded-xl border-2 transition-colors font-medium text-sm ${
-              ownContainer
-                ? 'border-purple bg-lilac/30 text-purple-deep'
-                : 'border-lilac text-ink/60 hover:border-purple/40'
-            }`}
-          >
-            <div className={`relative w-12 h-7 rounded-full transition-colors shrink-0 ${ownContainer ? 'bg-purple' : 'bg-lilac'}`}>
-              <span className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${ownContainer ? 'translate-x-6' : 'translate-x-1'}`} />
-            </div>
-            {ownContainer ? '10% discount applied' : 'No discount'}
-          </button>
-        </div>
+      {/* Popup location */}
+      <div className="bg-white rounded-2xl border border-lilac p-5">
+        <label className="block text-xs font-semibold uppercase tracking-widest text-ink/50 mb-2">
+          Popup location
+        </label>
+        <select
+          value={popupId}
+          onChange={(e) => setPopupId(e.target.value)}
+          className="w-full border border-lilac rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple"
+        >
+          {popups.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.title} - {p.city}
+            </option>
+          ))}
+        </select>
+        <p className="text-xs text-ink/50 mt-1.5">
+          Tax rate: <strong>{(taxRate * 100).toFixed(2)}%</strong> ({selectedPopup?.city ?? '-'})
+        </p>
       </div>
 
       {/* Products */}
@@ -116,7 +89,7 @@ export default function Calculator({ products, popups }: CalculatorProps) {
                 const val = amounts[product.id] ?? '';
                 const amount = parseFloat(val);
                 const lineTotal = !isNaN(amount) && amount > 0
-                  ? amount * product.pricePerUnit * (1 - discountRate)
+                  ? amount * product.pricePerUnit
                   : null;
 
                 return (
@@ -172,15 +145,7 @@ export default function Calculator({ products, popups }: CalculatorProps) {
                 </span>
                 <span>${l.sale.toFixed(2)}</span>
               </div>
-            ))}
-
-            {ownContainer && (
-              <div className="flex justify-between text-purple border-t border-lilac pt-2 mt-2">
-                <span>Container discount (10%)</span>
-                <span>−${discountAmount.toFixed(2)}</span>
-              </div>
-            )}
-
+            ))}            
             <div className="border-t border-lilac pt-2 mt-2 space-y-1">
               {taxableBase > 0 && (
                 <div className="flex justify-between text-ink/50 text-xs">

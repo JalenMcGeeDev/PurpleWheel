@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getProducts, getAllPopups } from '../../../lib/db';
+import { getProducts, getAllPopups, getActiveTerminal } from '../../../lib/db';
 import CheckoutClient from './CheckoutClient';
 
 export const metadata: Metadata = {
@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function CheckoutPage() {
-  const [products, allPopups] = await Promise.all([
+  const [products, allPopups, terminal] = await Promise.all([
     getProducts().catch(() => []),
     getAllPopups().catch(() => []),
+    getActiveTerminal().catch(() => null),
   ]);
 
   const now = new Date();
@@ -29,9 +30,14 @@ export default async function CheckoutPage() {
         </div>
         <Link href="/admin/pos/pair" className="text-xs text-purple hover:underline">Pair Terminal</Link>
       </div>
-      <p className="text-sm text-ink/60 mb-8">
-        Enter product amounts, review the total, then charge the customer on the Square Terminal.
-      </p>
+      {terminal ? (
+        <p className="text-xs text-green-600 mb-8 flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-green-500 shrink-0" />
+          Terminal: {terminal.name}
+        </p>
+      ) : (
+        <p className="text-xs text-amber-600 mb-8">No terminal paired</p>
+      )}
       <CheckoutClient products={products} popups={popups} />
       <a href="/admin" className="mt-8 inline-block text-sm text-purple hover:underline">← Dashboard</a>
     </div>
