@@ -87,3 +87,12 @@ export interface POSTransaction {
   createdAt: string;
   completedAt?: string;
 }
+
+export interface Terminal {
+  id: string;
+  name: string;
+  squareDeviceId: string;
+  locationId: string;
+  isActive: boolean;
+  createdAt: string;
+}

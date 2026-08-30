@@ -1,5 +1,5 @@
 import { getSupabase } from './supabase';
-import type { Reservation, HostInquiry, Product, Popup, ProductRequest, POSTransaction } from '../types';
+import type { Reservation, HostInquiry, Product, Popup, ProductRequest, POSTransaction, Terminal } from '../types';
 
 // ── Reservations ─────────────────────────────────────────────────────────────
 
@@ -258,5 +258,58 @@ function rowToPOSTransaction(row: Record<string, unknown>): POSTransaction {
     status:               row.status as POSTransaction['status'],
     createdAt:            row.created_at as string,
     completedAt:          (row.completed_at as string | null) ?? undefined,
+  };
+}
+
+// ── Terminals ─────────────────────────────────────────────────────────────────
+
+export async function getActiveTerminal(): Promise<Terminal | null> {
+  const { data, error } = await getSupabase()
+    .from('terminals')
+    .select('*')
+    .eq('is_active', true)
+    .maybeSingle();
+  if (error) return null; // table may not exist yet
+  return data ? rowToTerminal(data as Record<string, unknown>) : null;
+}
+
+export async function getAllTerminals(): Promise<Terminal[]> {
+  const { data, error } = await getSupabase()
+    .from('terminals')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) return [];
+  return (data ?? []).map(rowToTerminal);
+}
+
+export async function saveTerminal(
+  terminal: Omit<Terminal, 'id' | 'createdAt'>,
+): Promise<Terminal> {
+  // Deactivate all others before saving a new active terminal
+  if (terminal.isActive) {
+    await getSupabase().from('terminals').update({ is_active: false }).neq('id', '');
+  }
+  const { data, error } = await getSupabase()
+    .from('terminals')
+    .insert({
+      name:             terminal.name,
+      square_device_id: terminal.squareDeviceId,
+      location_id:      terminal.locationId,
+      is_active:        terminal.isActive,
+    })
+    .select()
+    .single();
+  if (error) throw new Error(error.message);
+  return rowToTerminal(data as Record<string, unknown>);
+}
+
+function rowToTerminal(row: Record<string, unknown>): Terminal {
+  return {
+    id:             row.id as string,
+    name:           row.name as string,
+    squareDeviceId: row.square_device_id as string,
+    locationId:     row.location_id as string,
+    isActive:       row.is_active as boolean,
+    createdAt:      row.created_at as string,
   };
 }
