@@ -4,7 +4,7 @@ import Link from 'next/link';
 import POSClient from './POSClient';
 
 export const metadata: Metadata = {
-  title: 'Point of Sale — Admin',
+  title: 'Point of Sale - Admin',
   robots: { index: false, follow: false },
 };
 
@@ -29,3 +29,4 @@ export default function POSPage() {
     </div>
   );
 }
+

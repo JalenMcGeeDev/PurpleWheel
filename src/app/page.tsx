@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import NextPopupCard from '../components/NextPopupCard';
 
 export const dynamic = 'force-dynamic';
-import { getUpcomingPopups, getProducts } from '../lib/db';
+import { getUpcomingPopups } from '../lib/db';
 import { siteSettings } from '../data/siteSettings';
 
 export const metadata: Metadata = {
-  title: 'The Purple Wheel — Refillery serving Raleigh, Durham & Chapel Hill',
+  title: 'The Purple Wheel - Refillery serving Raleigh, Durham & Chapel Hill',
   description:
     'A mobile refillery bringing zero-waste pantry, home, and body products to the Triangle. Bring your jar, fill what you need, pay by weight.',
 };
@@ -16,12 +16,12 @@ const HOW_IT_WORKS = [
   {
     icon: '🫙',
     title: 'Bring your own jar',
-    body: 'Any clean container works — mason jar, old shampoo bottle, whatever you have. We weigh it empty first so you only pay for what goes inside.',
+    body: 'Any clean container works - mason jar, old shampoo bottle, whatever you have. We weigh it empty first so you only pay for what goes inside.',
   },
   {
     icon: '⚖️',
     title: 'Fill what you need',
-    body: 'Take as much or as little as you want. No fixed sizes, no packaging waste — just the amount that makes sense for your household.',
+    body: 'Take as much or as little as you want. No fixed sizes, no packaging waste - just the amount that makes sense for your household.',
   },
   {
     icon: '💜',
@@ -37,7 +37,7 @@ const jsonLd = {
   description: 'Mobile refillery serving Raleigh, Durham, and Chapel Hill, NC.',
   url: 'https://purplewheel.store',
   telephone: '+19196386692',
-  email: 'sunshine.alv5@gmail.com',
+  email: 'hello@purplewheel.store',
   sameAs: ['https://instagram.com/thepurplewheel'],
   areaServed: [
     { '@type': 'City', name: 'Raleigh', containedInPlace: { '@type': 'State', name: 'North Carolina' } },
@@ -48,12 +48,8 @@ const jsonLd = {
 };
 
 export default async function HomePage() {
-  const [upcoming, allProducts] = await Promise.all([
-    getUpcomingPopups().catch(() => []),
-    getProducts().catch(() => []),
-  ]);
+  const upcoming = await getUpcomingPopups().catch(() => []);
   const nextPopup = upcoming[0];
-  const featuredProducts = allProducts.filter((p) => p.available).slice(0, 6);
   return (
     <>
       <script
@@ -61,12 +57,17 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="bg-purple-deep text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 grid lg:grid-cols-2 gap-12 items-center">
+      <section className="relative text-white">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/hero.jpg)' }} />
+        <div className="absolute inset-0 bg-purple-deep/85" />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-lilac text-sm font-semibold uppercase tracking-widest mb-4">
-              Raleigh · Durham · Chapel Hill
-            </p>
+            <div className="flex items-center gap-2 text-lilac text-sm font-semibold mb-4">
+              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-2.003 3.5-4.697 3.5-8.327a8 8 0 10-16 0c0 3.63 1.556 6.326 3.5 8.327a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" clipRule="evenodd" />
+              </svg>
+              The Triangle
+            </div>
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               The Purple Wheel
             </h1>
@@ -74,8 +75,7 @@ export default async function HomePage() {
               {siteSettings.tagline}
             </p>
             <p className="text-white/70 mt-5 text-base sm:text-lg max-w-lg leading-relaxed">
-              We bring bulk pantry staples, home goods, and body care straight to your neighborhood.
-              Bring your own jar, fill what you need, and pay by weight — no packaging, no waste.
+              Less Packaging. Less Waste. Same Essentials.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link
@@ -133,87 +133,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Discount callout ─────────────────────────────────────────────── */}
-      <section className="bg-lilac/30 border-y border-lilac">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-center gap-6">
-          <div className="w-14 h-14 rounded-full bg-purple flex items-center justify-center shrink-0 text-2xl">
-            🫙
-          </div>
-          <div className="text-center sm:text-left flex-1">
-            <h2 className="font-heading text-2xl text-purple-deep">
-              Bring your own container, save {siteSettings.discountPercentage}%
-            </h2>
-            <p className="text-ink/70 mt-2 max-w-lg">
-              Any clean jar, bottle, or bag works. We weigh it empty first — you only pay for
-              what goes inside.
-            </p>
-          </div>
-          <Link
-            href="/how-it-works"
-            className="shrink-0 px-5 py-3 border-2 border-purple text-purple rounded-xl font-semibold hover:bg-purple hover:text-white transition-colors"
-          >
-            Learn more
-          </Link>
-        </div>
-      </section>
-
-      {/* ── Product teaser ───────────────────────────────────────────────── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <h2 className="font-heading text-3xl sm:text-4xl text-purple-deep">What we carry</h2>
-            <p className="text-ink/60 mt-2">Pantry staples, home goods, and body care — all refillable.</p>
-          </div>
-          <Link href="/refills" className="text-purple font-medium hover:underline text-sm hidden sm:block">
-            Full price list →
-          </Link>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {featuredProducts.map((product) => (
-            <div key={product.id} className="bg-white rounded-2xl border border-lilac/50 p-5">
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-purple/70 mb-1">
-                    {product.category}
-                  </p>
-                  <p className="font-semibold text-ink">{product.name}</p>
-                  <p className="text-sm text-ink/60 mt-1 line-clamp-2">{product.description}</p>
-                </div>
-                <p className="shrink-0 font-semibold text-purple">
-                  ${product.pricePerUnit.toFixed(2)}
-                  <span className="text-xs font-normal text-ink/40 block text-right">
-                    {product.unit}
-                  </span>
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:justify-center">
-          <Link
-            href="/refills"
-            className="text-center px-6 py-3 border border-purple text-purple rounded-xl font-semibold hover:bg-lilac/30 transition-colors"
-          >
-            View all products & prices
-          </Link>
-          <Link
-            href="/reserve"
-            className="text-center px-6 py-3 bg-purple text-white rounded-xl font-semibold hover:bg-purple-deep transition-colors"
-          >
-            Reserve your refills
-          </Link>
-        </div>
-      </section>
-
       {/* ── Host a popup banner ───────────────────────────────────────────── */}
       <section className="bg-purple-deep text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 grid sm:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="font-heading text-3xl sm:text-4xl mb-3">Host a popup at your space</h2>
             <p className="text-lilac/80 leading-relaxed">
-              Offices, apartment communities, and local shops — bring zero-waste shopping directly
+              Offices, apartment communities, and local shops - bring zero-waste shopping directly
               to your people. We handle everything; you just show up.
             </p>
           </div>
@@ -232,7 +158,7 @@ export default async function HomePage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
         <h2 className="font-heading text-3xl text-purple-deep mb-3">Stay in the loop</h2>
         <p className="text-ink/60 mb-8 max-w-md mx-auto">
-          Get notified when new popup dates are added. No spam — just dates, locations, and
+          Get notified when new popup dates are added. No spam - just dates, locations, and
           occasional new products.
         </p>
         <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="#" method="POST">
@@ -270,3 +196,4 @@ export default async function HomePage() {
     </>
   );
 }
+

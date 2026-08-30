@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { getAllPopups } from '../../../lib/db';
 
 export const metadata: Metadata = {
-  title: 'Admin — Popups',
+  title: 'Admin - Popups',
   robots: { index: false, follow: false },
 };
 
@@ -16,7 +16,7 @@ export default async function AdminPrepIndexPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-      <h1 className="font-heading text-3xl text-purple-deep mb-2">Admin — Prep Lists</h1>
+      <h1 className="font-heading text-3xl text-purple-deep mb-2">Admin - Prep Lists</h1>
       <p className="text-ink/60 mb-10 text-sm">Select a popup to view or print its prep list.</p>
 
       <div className="grid gap-4">
@@ -46,3 +46,4 @@ export default async function AdminPrepIndexPage() {
     </div>
   );
 }
+

@@ -5,12 +5,11 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 const navLinks = [
-  { href: '/schedule', label: 'Schedule' },
-  { href: '/refills', label: 'Refills & Prices' },
+  { href: '/schedule',    label: 'Popup Schedule' },
   { href: '/how-it-works', label: 'How It Works' },
-  { href: '/requests', label: 'Request a Product' },
-  { href: '/host', label: 'Host a Popup' },
-  { href: '/about', label: 'About' },
+  { href: '/requests',    label: 'Request Products' },
+  { href: '/partner',     label: 'Partner' },
+  { href: '/about',       label: 'About' },
 ];
 
 export default function Header() {
@@ -19,7 +18,7 @@ export default function Header() {
   return (
     <header className="bg-white border-b border-lilac sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Logo — drop your SVG file at public/logo.svg and swap this placeholder */}
+        {/* Logo - drop your SVG file at public/logo.svg and swap this placeholder */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="The Purple Wheel home">
           <Image
             src="/images/logo-spiral-purple.png"
@@ -98,3 +97,4 @@ export default function Header() {
     </header>
   );
 }
+

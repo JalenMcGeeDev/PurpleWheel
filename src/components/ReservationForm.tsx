@@ -177,7 +177,7 @@ export default function ReservationForm({
         <h2 className="font-heading text-2xl text-purple-deep mb-3">Pre-orders are closed</h2>
         <p className="text-ink/70 mb-6">
           There are no upcoming popups with open pre-orders right now. Walk-ups are always welcome at
-          the popup — check the schedule for the next date.
+          the popup - check the schedule for the next date.
         </p>
         <a href="/schedule" className="inline-block px-6 py-3 bg-purple text-white rounded-xl font-semibold hover:bg-purple-deep transition-colors">
           View schedule
@@ -254,7 +254,7 @@ export default function ReservationForm({
         <div>
           <h2 className="font-heading text-2xl text-purple-deep mb-2">Add products</h2>
           <p className="text-sm text-ink/60 mb-6">
-            Enter how much of each product you'd like. Prices are estimates — you pay by actual weight at the popup.
+            Enter how much of each product you'd like. Prices are estimates - you pay by actual weight at the popup.
           </p>
 
           {categories.map((cat) => {
@@ -371,13 +371,13 @@ export default function ReservationForm({
             {[
               {
                 value: true,
-                label: `Yes — I'm bringing my own`,
+                label: `Yes - I'm bringing my own`,
                 sub: `${discountPercentage}% discount applied to your estimate`,
                 icon: '🫙',
               },
               {
                 value: false,
-                label: `No — I'll use one of yours`,
+                label: `No - I'll use one of yours`,
                 sub: `$${jarDepositAmount.toFixed(2)} jar deposit collected at the popup`,
                 icon: '🛒',
               },
@@ -431,7 +431,7 @@ export default function ReservationForm({
                 <span>~${estimatedTotal.toFixed(2)}</span>
               </div>
             </div>
-            <p className="text-xs text-ink/40 mt-2">Estimate only — you pay by actual weight at the popup.</p>
+            <p className="text-xs text-ink/40 mt-2">Estimate only - you pay by actual weight at the popup.</p>
           </div>
 
           <div className="flex justify-between mt-8">
@@ -502,7 +502,7 @@ export default function ReservationForm({
             </div>
           </div>
 
-          {/* Honeypot — hidden from real users */}
+          {/* Honeypot - hidden from real users */}
           <input
             type="text"
             name="_trap"
@@ -525,7 +525,7 @@ export default function ReservationForm({
               <span>Estimated total</span>
               <span>~${estimatedTotal.toFixed(2)}</span>
             </div>
-            <p className="text-xs text-ink/40 mt-2">No payment taken now — you pay at the popup.</p>
+            <p className="text-xs text-ink/40 mt-2">No payment taken now - you pay at the popup.</p>
           </div>
 
           {error && (
@@ -564,7 +564,7 @@ export default function ReservationForm({
           <div className="bg-white rounded-2xl border border-lilac p-8 max-w-sm mx-auto mb-8">
             <p className="text-xs font-bold uppercase tracking-widest text-ink/40 mb-2">Your order code</p>
             <p className="font-heading text-4xl font-bold text-purple-deep tracking-widest">{form.orderCode}</p>
-            <p className="text-xs text-ink/40 mt-3">Bring this to the popup — they'll have your order ready.</p>
+            <p className="text-xs text-ink/40 mt-3">Bring this to the popup - they'll have your order ready.</p>
           </div>
 
           {selectedPopup && (
@@ -599,3 +599,4 @@ export default function ReservationForm({
     </div>
   );
 }
+

@@ -73,12 +73,12 @@ export default function Calculator({ products, popups }: CalculatorProps) {
           >
             {popups.map((p) => (
               <option key={p.id} value={p.id}>
-                {p.title} — {p.city}
+                {p.title} - {p.city}
               </option>
             ))}
           </select>
           <p className="text-xs text-ink/50 mt-1.5">
-            Tax rate: <strong>{(taxRate * 100).toFixed(2)}%</strong> ({selectedPopup?.city ?? '—'})
+            Tax rate: <strong>{(taxRate * 100).toFixed(2)}%</strong> ({selectedPopup?.city ?? '-'})
           </p>
         </div>
 
@@ -224,3 +224,4 @@ export default function Calculator({ products, popups }: CalculatorProps) {
     </div>
   );
 }
+

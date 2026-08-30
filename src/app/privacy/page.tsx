@@ -56,8 +56,8 @@ export default function PrivacyPage() {
           <h2 className="font-heading text-xl text-purple-deep mb-3">Your rights</h2>
           <p>
             To request deletion of your information, email{' '}
-            <a href="mailto:sunshine.alv5@gmail.com" className="text-purple underline">
-              sunshine.alv5@gmail.com
+            <a href="mailto:hello@purplewheel.store" className="text-purple underline">
+              hello@purplewheel.store
             </a>{' '}
             with the subject line "Data deletion request" and the email address you used.
           </p>
@@ -67,8 +67,8 @@ export default function PrivacyPage() {
           <h2 className="font-heading text-xl text-purple-deep mb-3">Questions</h2>
           <p>
             Email{' '}
-            <a href="mailto:sunshine.alv5@gmail.com" className="text-purple underline">
-              sunshine.alv5@gmail.com
+            <a href="mailto:hello@purplewheel.store" className="text-purple underline">
+              hello@purplewheel.store
             </a>{' '}
             with any privacy questions.
           </p>

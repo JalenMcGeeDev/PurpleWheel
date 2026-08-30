@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { updatePOSTransaction } from '../../../../lib/db';
 
 export const metadata: Metadata = {
-  title: 'Payment Result — Admin',
+  title: 'Payment Result - Admin',
   robots: { index: false, follow: false },
 };
 
@@ -31,7 +31,7 @@ export default async function POSResultPage({
   const { txId, data: rawData, error_code } = await searchParams;
 
   if (!txId) {
-    return <Result outcome="failed" message="Invalid callback — no transaction ID." />;
+    return <Result outcome="failed" message="Invalid callback - no transaction ID." />;
   }
 
   let status: 'completed' | 'cancelled' | 'failed' = 'failed';
@@ -144,3 +144,4 @@ function ResultIcon({ outcome }: { outcome: 'completed' | 'cancelled' | 'failed'
     </div>
   );
 }
+

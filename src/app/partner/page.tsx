@@ -5,14 +5,14 @@ import HostForm from '../../components/HostForm';
 export const metadata: Metadata = {
   title: 'Partner With Us',
   description:
-    'Bring The Purple Wheel to your apartment community, office, or building. No fees, no minimums — we bring everything and come back on a set schedule.',
+    'Bring The Purple Wheel to your apartment community, office, or building. No fees, no minimums - we bring everything and come back on a set schedule.',
 };
 
 const STEPS = [
   {
     number: '1',
     heading: 'We bring everything, you provide the space.',
-    body: 'Dispensers, scales, signage, and jars — all we need is a table-sized spot for two hours.',
+    body: 'Dispensers, scales, signage, and jars - all we need is a table-sized spot for two hours.',
   },
   {
     number: '2',
@@ -22,7 +22,7 @@ const STEPS = [
   {
     number: '3',
     heading: 'We come back on a set schedule.',
-    body: 'Same day, same time, weekly or biweekly — so your residents always know when we\'re there.',
+    body: 'Same day, same time, weekly or biweekly - so your residents always know when we\'re there.',
   },
   {
     number: '4',
@@ -41,7 +41,7 @@ const WHAT_YOU_GET = [
   'Pre-made flyers and digital content you can share',
   'A dedicated prep list so your event runs smoothly',
   'Products sourced to match your community\'s requests',
-  'Zero effort on your end — we set up, sell, and clean up',
+  'Zero effort on your end - we set up, sell, and clean up',
 ];
 
 export default function PartnerPage() {
@@ -99,7 +99,7 @@ export default function PartnerPage() {
         <h2 className="font-heading text-3xl text-purple-deep mb-8 text-center">Who we partner with</h2>
         <div className="grid sm:grid-cols-3 gap-5">
           {[
-            { icon: '🏠', label: 'Apartment communities', body: 'A sustainable amenity that residents love — and a reason to renew.' },
+            { icon: '🏠', label: 'Apartment communities', body: 'A sustainable amenity that residents love - and a reason to renew.' },
             { icon: '🏢', label: 'Offices & co-working', body: 'Zero-waste shopping as a workplace perk, right in the break room.' },
             { icon: '🛍️', label: 'Markets & retail shops', body: 'Bring new foot traffic and align your brand with sustainability.' },
           ].map(({ icon, label, body }) => (
@@ -124,3 +124,4 @@ export default function PartnerPage() {
     </div>
   );
 }
+

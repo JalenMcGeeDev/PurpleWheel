@@ -56,7 +56,7 @@ export default function RequestForm() {
         </div>
         <h3 className="font-heading text-2xl text-purple-deep mb-2">Request received!</h3>
         <p className="text-ink/70 max-w-sm mx-auto">
-          Thanks for the suggestion — Sunshine reviews every request and considers them when sourcing new products.
+          Thanks for the suggestion - our team reviews every request and considers them when sourcing new products.
         </p>
         <button
           onClick={() => { setForm({ productName: '', category: '', notes: '', submitterName: '', email: '' }); setStatus('idle'); }}
@@ -151,3 +151,4 @@ export default function RequestForm() {
     </form>
   );
 }
+

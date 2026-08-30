@@ -3,7 +3,7 @@ import PairClient from './PairClient';
 import { getAllTerminals } from '../../../../lib/db';
 
 export const metadata: Metadata = {
-  title: 'Pair Terminal — Admin',
+  title: 'Pair Terminal - Admin',
   robots: { index: false, follow: false },
 };
 
@@ -24,3 +24,4 @@ export default async function PairPage() {
     </div>
   );
 }
+

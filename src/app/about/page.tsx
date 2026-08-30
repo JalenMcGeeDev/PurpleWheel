@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: "Sunshine's story — why she started The Purple Wheel and what a mobile refillery means for the Triangle.",
+  description: "Our story - why we started The Purple Wheel and what a mobile refillery means for the Triangle.",
 };
 
 export default function AboutPage() {
@@ -11,24 +12,30 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="grid sm:grid-cols-2 gap-10 items-start mb-14">
         <div>
-          <h1 className="font-heading text-4xl text-purple-deep mb-4">Hey, I'm Sunshine</h1>
+          <h1 className="font-heading text-4xl text-purple-deep mb-4">About The Purple Wheel</h1>
           <p className="text-ink/80 text-lg leading-relaxed mb-4">
-            I started The Purple Wheel because I couldn't find a way to buy laundry detergent
-            without throwing away a plastic jug every few weeks — and I figured I wasn't the only one.
+            The Purple Wheel was started by Durham local Sunshine Alvarez. Sunshine has been a sustainability advocate her whole life, always researching and learning ways to live more sustainably - for herself and for the world. The Purple Wheel is what happened when she decided to take that advocacy further.
+          </p>
+          <p className="text-ink/70 leading-relaxed mb-4">
+            Refill stores exist, but they&apos;re usually one shop on one side of town. That works for some people and not at all for others.
+          </p>
+          <p className="text-ink/70 leading-relaxed mb-4">
+            Coming to you works for more of them. At the farmers market, at your apartment building, at your office.
           </p>
           <p className="text-ink/70 leading-relaxed">
-            Bulk refill stores exist, but they're usually one location on one side of town. That
-            works for some people and not at all for others. A van that comes to you works for
-            more people — at the farmers market, at your apartment complex, at your office.
+            A storefront of our own is the goal, and we&apos;re working toward it. But going mobile first means we&apos;re not asking anyone to drive across town to shop sustainably - we&apos;re bringing refills to the places people already are. When the shop opens, we&apos;ll keep coming to you.
           </p>
         </div>
-        <div className="bg-lilac/30 rounded-2xl aspect-square flex items-center justify-center border border-lilac">
-          {/* Replace this div with: <Image src="/images/about/sunshine.jpg" alt="Sunshine" fill className="object-cover rounded-2xl" /> */}
-          <div className="text-center text-ink/30 text-sm p-8">
-            <div className="text-5xl mb-3">🌻</div>
-            <p>Photo coming soon</p>
-            <p className="text-xs mt-1">(drop <code>public/images/about/sunshine.jpg</code>)</p>
+        <div>
+          <div className="relative rounded-2xl overflow-hidden aspect-square">
+            <Image
+              src="/images/about/sunshine.jpg"
+              alt="Sunshine Alvarez, founder of The Purple Wheel"
+              fill
+              className="object-cover"
+            />
           </div>
+          <p className="text-xs text-ink/50 text-center mt-2">Purple Wheel Founder, Sunshine Alvarez</p>
         </div>
       </div>
 
@@ -37,7 +44,7 @@ export default function AboutPage() {
         <h2 className="font-heading text-2xl text-purple-deep">The origin</h2>
         <p>
           The name came from the two things I love most: the color purple (obviously) and the
-          idea of a wheel — something that keeps moving, keeps coming back, keeps showing up
+          idea of a wheel - something that keeps moving, keeps coming back, keeps showing up
           in your neighborhood. The logo is a wheel. The van is purple. The name stuck.
         </p>
         <p>
@@ -58,7 +65,7 @@ export default function AboutPage() {
         <h2 className="font-heading text-2xl text-purple-deep mb-4">Why refills?</h2>
         <div className="space-y-4 text-ink/80 leading-relaxed text-sm">
           <p>
-            The average American throws away more than 100 plastic bottles a year — and that's
+            The average American throws away more than 100 plastic bottles a year - and that's
             just personal care products. Add cleaning supplies, pantry packaging, and single-use
             bags, and the number climbs fast.
           </p>
@@ -74,36 +81,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Service area */}
-      <section className="mb-12">
-        <h2 className="font-heading text-2xl text-purple-deep mb-4">Where we go</h2>
-        <p className="text-ink/70 mb-6">
-          The Purple Wheel currently serves the Triangle with regular stops in all three cities.
-          Want a popup in your neighborhood or at your building?{' '}
-          <a href="/host" className="text-purple underline">Get in touch</a>.
-        </p>
-        <div className="grid grid-cols-3 gap-4">
-          {['Raleigh', 'Durham', 'Chapel Hill'].map((city) => (
-            <div key={city} className="bg-white rounded-xl border border-lilac p-5 text-center">
-              <p className="font-heading text-lg text-purple-deep">{city}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Contact */}
       <section className="bg-purple-deep text-white rounded-2xl p-8">
         <h2 className="font-heading text-2xl mb-2">Say hello</h2>
         <p className="text-lilac/80 mb-5 text-sm">
-          Questions, press inquiries, partnership ideas, or just want to talk zero waste — I'd
+          Questions, press inquiries, partnership ideas, or just want to talk zero waste - I'd
           love to hear from you.
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
           <a
-            href="mailto:sunshine.alv5@gmail.com"
+            href="mailto:hello@purplewheel.store"
             className="px-5 py-3 bg-purple text-white font-semibold rounded-xl hover:bg-purple/80 transition-colors text-center text-sm"
           >
-            sunshine.alv5@gmail.com
+            hello@purplewheel.store
           </a>
           <a
             href="https://instagram.com/thepurplewheel"
@@ -118,3 +108,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

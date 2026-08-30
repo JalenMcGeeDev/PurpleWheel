@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
   const data = body as Record<string, unknown>;
 
-  // Honeypot check — if _trap has a value, silently succeed without storing
+  // Honeypot check - if _trap has a value, silently succeed without storing
   if (data._trap) {
     return NextResponse.json({ orderCode: generateOrderCode() });
   }
@@ -88,10 +88,10 @@ export async function POST(req: NextRequest) {
     await saveReservation(reservation);
   } catch (err) {
     console.error('Failed to save reservation:', err);
-    // Continue — email still goes out even if storage fails
+    // Continue - email still goes out even if storage fails
   }
 
-  // Send emails (non-blocking on error — reservation is still confirmed)
+  // Send emails (non-blocking on error - reservation is still confirmed)
   sendReservationConfirmation(reservation, popup).catch((err) =>
     console.error('Confirmation email failed:', err),
   );
@@ -101,3 +101,4 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ orderCode: reservation.orderCode }, { status: 201 });
 }
+

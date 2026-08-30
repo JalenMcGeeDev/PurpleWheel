@@ -3,19 +3,19 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'How It Works',
-  description: 'Everything a first-timer needs to know about refilling at The Purple Wheel — containers, tare weights, what to bring, and the 10% own-container discount.',
+  description: 'Everything a first-timer needs to know about refilling at The Purple Wheel - containers, tare weights, what to bring, and the 10% own-container discount.',
 };
 
 const SECTIONS = [
   {
     id: 'what-is',
     heading: 'What is a refillery?',
-    body: `A refillery is a store where you bring your own container and fill it from a bulk supply. There's no pre-packaged bottle to throw away — you take exactly what you need, pay for what you take, and go home with zero extra plastic.\n\nThe Purple Wheel is a mobile refillery: instead of a fixed shop, Sunshine loads up a van with bulk products and brings them directly to neighborhoods, farmers markets, and community spaces across Raleigh, Durham, and Chapel Hill.`,
+    body: `A refillery is a store where you bring your own container and fill it from a bulk supply. There's no pre-packaged bottle to throw away - you take exactly what you need, pay for what you take, and go home with zero extra plastic.\n\nThe Purple Wheel is a mobile refillery: instead of a fixed shop, our team loads up a van with bulk products and brings them directly to neighborhoods, farmers markets, and community spaces across Raleigh, Durham, and Chapel Hill.`,
   },
   {
     id: 'what-to-bring',
     heading: 'What to bring',
-    body: `Almost any clean container works:\n• Mason jars and glass containers of any size\n• Old shampoo bottles, pump bottles, and dispensers\n• Reusable bags for dry goods like grains and flour\n• Any food-safe container with a lid\n\nThe container doesn't need to be new or pretty — it just needs to be clean and dry before you fill it.`,
+    body: `Almost any clean container works:\n• Mason jars and glass containers of any size\n• Old shampoo bottles, pump bottles, and dispensers\n• Reusable bags for dry goods like grains and flour\n• Any food-safe container with a lid\n\nThe container doesn't need to be new or pretty - it just needs to be clean and dry before you fill it.`,
   },
   {
     id: 'not-accepted',
@@ -24,23 +24,23 @@ const SECTIONS = [
   },
   {
     id: 'tare-weight',
-    heading: 'What is tare weight — and why does it matter?',
-    body: `Tare weight is the weight of your empty container. Before we fill anything, we put your jar on the scale, note its weight, and subtract it from the final total. That means you only pay for the product inside — not the glass.\n\nSo if your jar weighs 0.4 lb and you take 1 lb of oats, you pay for 1 lb of oats. No surprises.`,
+    heading: 'What is tare weight - and why does it matter?',
+    body: `Tare weight is the weight of your empty container. Before we fill anything, we put your jar on the scale, note its weight, and subtract it from the final total. That means you only pay for the product inside - not the glass.\n\nSo if your jar weighs 0.4 lb and you take 1 lb of oats, you pay for 1 lb of oats. No surprises.`,
   },
   {
     id: 'pricing',
     heading: 'How pricing works',
-    body: `Everything is priced per pound, per ounce, or per fluid ounce — posted on a board at the popup. You decide how much to take. There are no fixed sizes.\n\nYou pay at the end, once we've weighed your filled container and subtracted the tare. The pre-order estimate on the website is based on the amount you requested — the actual price may vary slightly depending on how much you take.`,
+    body: `Everything is priced per pound, per ounce, or per fluid ounce - posted on a board at the popup. You decide how much to take. There are no fixed sizes.\n\nYou pay at the end, once we've weighed your filled container and subtracted the tare. The pre-order estimate on the website is based on the amount you requested - the actual price may vary slightly depending on how much you take.`,
   },
   {
     id: 'discount',
     heading: 'Bring your own container and save 10%',
-    body: `If you bring your own container (any clean jar or bottle), we knock 10% off your total. It's our way of saying thank you for reducing waste — and it adds up quickly if you're buying a few items.\n\nIf you don't have a container, you can borrow a jar for a small refundable deposit. Return it at the next popup and get your deposit back.`,
+    body: `If you bring your own container (any clean jar or bottle), we knock 10% off your total. It's our way of saying thank you for reducing waste - and it adds up quickly if you're buying a few items.\n\nIf you don't have a container, you can borrow a jar for a small refundable deposit. Return it at the next popup and get your deposit back.`,
   },
   {
     id: 'reserve',
     heading: 'Pre-ordering vs. walk-up',
-    body: `You're always welcome to walk up at any popup — no reservation needed. Pre-ordering just means your products are set aside and measured out before you arrive, so you skip the queue and get in and out faster.\n\nPre-orders close 24 hours before each popup. After that, walk-up only.`,
+    body: `You're always welcome to walk up at any popup - no reservation needed. Pre-ordering just means your products are set aside and measured out before you arrive, so you skip the queue and get in and out faster.\n\nPre-orders close 24 hours before each popup. After that, walk-up only.`,
   },
 ];
 
@@ -49,7 +49,7 @@ export default function HowItWorksPage() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       <h1 className="font-heading text-4xl text-purple-deep mb-4">How It Works</h1>
       <p className="text-ink/70 text-lg mb-12 max-w-xl">
-        Everything you need to know before your first visit — especially if you've never been
+        Everything you need to know before your first visit - especially if you've never been
         to a refillery before and are slightly worried about doing it wrong. (You won't.)
       </p>
 
@@ -100,3 +100,4 @@ export default function HowItWorksPage() {
     </div>
   );
 }
+

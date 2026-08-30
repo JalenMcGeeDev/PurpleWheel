@@ -127,7 +127,7 @@ export async function getAllPopups(): Promise<Popup[]> {
 export async function getUpcomingPopups(): Promise<Popup[]> {
   const all = await getAllPopups();
   const now = new Date();
-  return all.filter((p) => p.status === 'scheduled' && new Date(p.endsAt) > now);
+  return all.filter((p) => p.status === 'scheduled' && new Date(p.endsAt) > now && p.isPublic);
 }
 
 export async function getPopupById(id: string): Promise<Popup | null> {
@@ -165,6 +165,7 @@ function rowToPopup(row: Record<string, unknown>): Popup {
     preordersEnabled: row.preorders_enabled as boolean,
     preorderCutoff: row.preorder_cutoff as string,
     status: row.status as Popup['status'],
+    isPublic: row.is_public !== false, // default true if column missing
     geo:
       row.geo_lat != null && row.geo_lng != null
         ? { lat: Number(row.geo_lat), lng: Number(row.geo_lng) }
@@ -185,6 +186,7 @@ function popupToRow(popup: Popup): Record<string, unknown> {
     preorders_enabled: popup.preordersEnabled,
     preorder_cutoff: popup.preorderCutoff,
     status: popup.status,
+    is_public: popup.isPublic,
     geo_lat: popup.geo?.lat ?? null,
     geo_lng: popup.geo?.lng ?? null,
   };

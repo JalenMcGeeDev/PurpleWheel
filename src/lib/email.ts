@@ -25,13 +25,13 @@ export async function sendReservationConfirmation(
     .join('');
 
   const containerNote = reservation.bringingOwnContainer
-    ? '✓ You\'re bringing your own container — 10% discount applied to estimate.'
-    : 'No container — a $2.00 jar deposit will be collected at the popup.';
+    ? '✓ You\'re bringing your own container - 10% discount applied to estimate.'
+    : 'No container - a $2.00 jar deposit will be collected at the popup.';
 
   await getResend().emails.send({
     from: FROM,
     to: reservation.email,
-    subject: `Your reservation is confirmed — ${popup.title} on ${dateStr}`,
+    subject: `Your reservation is confirmed - ${popup.title} on ${dateStr}`,
     html: `
       <div style="font-family:sans-serif;max-width:520px;margin:0 auto;color:#1A1A1A">
         <div style="background:#8B5CF6;padding:24px 32px;border-radius:8px 8px 0 0">
@@ -62,7 +62,7 @@ export async function sendReservationConfirmation(
             </tr>
           </table>
           <p style="font-size:12px;color:#6b7280;margin:8px 0 0">
-            Estimate only — you pay by actual weight at the popup.
+            Estimate only - you pay by actual weight at the popup.
           </p>
 
           <p style="margin-top:16px;font-size:14px">${containerNote}</p>
@@ -88,12 +88,12 @@ export async function sendReservationNotification(
   await getResend().emails.send({
     from: FROM,
     to: SUNSHINE,
-    subject: `New reservation ${reservation.orderCode} — ${popup.title} ${dateStr}`,
+    subject: `New reservation ${reservation.orderCode} - ${popup.title} ${dateStr}`,
     html: `
       <p><strong>${reservation.customerName}</strong> (${reservation.email}${reservation.phone ? `, ${reservation.phone}` : ''}) reserved for ${popup.title} on ${dateStr}.</p>
       <p>Order: <strong>${reservation.orderCode}</strong></p>
       <pre style="background:#f4f4f4;padding:12px;border-radius:4px">${itemList}</pre>
-      <p>Container: ${reservation.bringingOwnContainer ? 'Yes — bringing own' : 'No — jar deposit needed'}</p>
+      <p>Container: ${reservation.bringingOwnContainer ? 'Yes - bringing own' : 'No - jar deposit needed'}</p>
       <p>Est. total: $${reservation.estimatedTotal.toFixed(2)}</p>
     `,
   });
@@ -103,7 +103,7 @@ export async function sendHostInquiryNotification(inquiry: HostInquiry): Promise
   await getResend().emails.send({
     from: FROM,
     to: SUNSHINE,
-    subject: `New hosting inquiry — ${inquiry.organization}`,
+    subject: `New hosting inquiry - ${inquiry.organization}`,
     html: `
       <p><strong>${inquiry.name}</strong> from <strong>${inquiry.organization}</strong> wants to host a popup.</p>
       <p>Type: ${inquiry.locationType} | Audience: ${inquiry.estimatedAudience ?? 'not specified'}</p>
@@ -143,7 +143,7 @@ export async function sendPopupReminder(
   await getResend().emails.send({
     from: FROM,
     to: reservation.email,
-    subject: `Reminder: your refill pickup is today — ${popup.venueName}`,
+    subject: `Reminder: your refill pickup is today - ${popup.venueName}`,
     html: `
       <div style="font-family:sans-serif;max-width:520px;margin:0 auto;color:#1A1A1A">
         <div style="background:#8B5CF6;padding:24px 32px;border-radius:8px 8px 0 0">
@@ -151,7 +151,7 @@ export async function sendPopupReminder(
           <p style="color:#DDD3FB;margin:4px 0 0">Popup reminder</p>
         </div>
         <div style="background:#FAF6EE;padding:32px;border-radius:0 0 8px 8px">
-          <p>Hi ${reservation.customerName} — today's the day!</p>
+          <p>Hi ${reservation.customerName} - today's the day!</p>
           <p>Your order <strong>${reservation.orderCode}</strong> is ready to pick up.</p>
           <p><strong>${popup.venueName}</strong> · ${timeStr}<br>${popup.address}</p>
           ${popup.notes ? `<p style="font-size:14px;color:#6b7280">${popup.notes}</p>` : ''}
@@ -160,4 +160,5 @@ export async function sendPopupReminder(
     `,
   });
 }
+
 

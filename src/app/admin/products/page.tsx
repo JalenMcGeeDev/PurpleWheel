@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 import { getProducts } from '../../../lib/db';
 import ProductsClient from './ProductsClient';
 
-export const metadata: Metadata = { title: 'Products — Admin', robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: 'Products - Admin', robots: { index: false, follow: false } };
 
 export default async function AdminProductsPage() {
   const products = await getProducts().catch(() => []);
@@ -21,3 +21,4 @@ export default async function AdminProductsPage() {
     </div>
   );
 }
+

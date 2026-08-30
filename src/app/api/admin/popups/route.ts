@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
     preordersEnabled: body.preordersEnabled ?? true,
     preorderCutoff: body.preorderCutoff ?? body.startsAt,
     status: body.status ?? 'scheduled',
+    isPublic: body.isPublic ?? true,
     geo: body.geo,
   });
 

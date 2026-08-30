@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function SchedulePage() {
   const allPopups = await getAllPopups().catch(() => []);
-  const upcoming = allPopups.filter((p) => isFuture(new Date(p.startsAt)));
+  const upcoming = allPopups.filter((p) => isFuture(new Date(p.startsAt)) && p.isPublic);
   const now = new Date();
 
   // Group by month

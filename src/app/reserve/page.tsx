@@ -21,7 +21,7 @@ export default async function ReservePage() {
         <h1 className="font-heading text-4xl text-purple-deep mb-3">Reserve your refills</h1>
         <p className="text-ink/70 text-lg max-w-xl">
           Pre-order and skip the queue. Your order will be prepped and ready at the popup.{' '}
-          <strong>No payment until you pick up</strong> — you pay by actual weight at the table.
+          <strong>No payment until you pick up</strong> - you pay by actual weight at the table.
         </p>
       </div>
       <ReservationForm
@@ -33,3 +33,4 @@ export default async function ReservePage() {
     </div>
   );
 }
+

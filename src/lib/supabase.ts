@@ -2,7 +2,7 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 let _client: SupabaseClient | null = null;
 
-// Lazy — throws at call time, not at build time
+// Lazy - throws at call time, not at build time
 export function getSupabase(): SupabaseClient {
   if (_client) return _client;
   const url = process.env.SUPABASE_URL;
@@ -13,3 +13,4 @@ export function getSupabase(): SupabaseClient {
   _client = createClient(url, key, { auth: { persistSession: false } });
   return _client;
 }
+

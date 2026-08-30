@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 const URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-/** For server components and server actions — reads from the cookie store */
+/** For server components and server actions - reads from the cookie store */
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
   return createServerClient(URL, ANON, {
@@ -16,7 +16,7 @@ export async function createSupabaseServerClient() {
   });
 }
 
-/** For API route handlers — reads cookies from the incoming NextRequest */
+/** For API route handlers - reads cookies from the incoming NextRequest */
 export function createSupabaseRequestClient(req: NextRequest) {
   return createServerClient(URL, ANON, {
     cookies: {
@@ -26,7 +26,7 @@ export function createSupabaseRequestClient(req: NextRequest) {
   });
 }
 
-/** Validates a Bearer JWT token — use in admin API routes */
+/** Validates a Bearer JWT token - use in admin API routes */
 export async function validateAdminToken(req: NextRequest): Promise<boolean> {
   const token = req.headers.get('authorization')?.replace('Bearer ', '');
   if (!token) return false;
@@ -34,3 +34,4 @@ export async function validateAdminToken(req: NextRequest): Promise<boolean> {
   const { data: { user } } = await supabase.auth.getUser(token);
   return !!user;
 }
+

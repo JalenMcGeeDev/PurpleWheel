@@ -56,13 +56,12 @@ export default function Footer({ nextPopup, settings }: FooterProps) {
           <p className="text-xs font-semibold uppercase tracking-widest text-lilac/60 mb-3">Links</p>
           <nav className="flex flex-col gap-2">
             {[
-              ['/schedule', 'Schedule'],
-              ['/refills', 'Refills & Prices'],
+              ['/schedule',    'Popup Schedule'],
               ['/how-it-works', 'How It Works'],
-              ['/requests', 'Request a Product'],
-              ['/host', 'Host a Popup'],
-              ['/about', 'About'],
-              ['/privacy', 'Privacy'],
+              ['/requests',    'Request Products'],
+              ['/partner',     'Partner'],
+              ['/about',       'About'],
+              ['/privacy',     'Privacy'],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="text-sm text-lilac/80 hover:text-white transition-colors">
                 {label}

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 import { getAllPopups } from '../../../lib/db';
 
-export const metadata: Metadata = { title: 'Popups — Admin', robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: 'Popups - Admin', robots: { index: false, follow: false } };
 
 export default async function AdminPopupsPage() {
   const allPopups = await getAllPopups().catch(() => []);
@@ -36,6 +36,11 @@ export default async function AdminPopupsPage() {
                 }`}>
                   {popup.status}
                 </span>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                  popup.isPublic ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                }`}>
+                  {popup.isPublic ? 'Public' : 'Private'}
+                </span>
               </div>
               <p className="text-sm text-ink/60 mt-0.5">
                 {format(new Date(popup.startsAt), 'EEE, MMM d · h:mm a')} · {popup.city}
@@ -55,3 +60,4 @@ export default async function AdminPopupsPage() {
     </div>
   );
 }
+

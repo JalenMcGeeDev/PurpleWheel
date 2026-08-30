@@ -8,7 +8,7 @@ const VENUE_TYPES: { value: LocationType; label: string; desc: string }[] = [
   {
     value: 'office',
     label: 'Office or co-working space',
-    desc: 'A great perk for employees — we set up in a common area or breakroom.',
+    desc: 'A great perk for employees - we set up in a common area or breakroom.',
   },
   {
     value: 'apartment community',
@@ -18,12 +18,12 @@ const VENUE_TYPES: { value: LocationType; label: string; desc: string }[] = [
   {
     value: 'retail',
     label: 'Retail shop or market',
-    desc: "Partner with us for a pop-in event — brings new foot traffic to your space.",
+    desc: "Partner with us for a pop-in event - brings new foot traffic to your space.",
   },
   {
     value: 'other',
     label: 'Something else',
-    desc: 'School, church, community center — reach out and let\'s figure it out.',
+    desc: 'School, church, community center - reach out and let\'s figure it out.',
   },
 ];
 
@@ -217,3 +217,4 @@ export default function HostForm() {
     </form>
   );
 }
+

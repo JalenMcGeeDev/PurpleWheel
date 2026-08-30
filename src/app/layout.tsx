@@ -27,7 +27,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'The Purple Wheel — Refillery serving Raleigh, Durham & Chapel Hill',
+    default: 'The Purple Wheel - Refillery serving Raleigh, Durham & Chapel Hill',
     template: '%s | The Purple Wheel',
   },
   icons: {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     ],
   },
   description:
-    'A mobile refillery bringing bulk pantry staples, home goods, and body care to Raleigh, Durham, and Chapel Hill. Bring your own jar — pay by weight.',
+    'A mobile refillery bringing bulk pantry staples, home goods, and body care to Raleigh, Durham, and Chapel Hill. Bring your own jar - pay by weight.',
   keywords: ['refill store Raleigh', 'zero waste Durham', 'refillery Chapel Hill', 'bulk refill NC', 'zero waste grocery'],
   openGraph: {
     siteName: 'The Purple Wheel',
@@ -59,3 +59,4 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+

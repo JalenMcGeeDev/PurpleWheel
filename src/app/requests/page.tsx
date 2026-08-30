@@ -20,8 +20,8 @@ export default function RequestsPage() {
       <div className="mb-12">
         <h1 className="font-heading text-4xl text-purple-deep mb-4">Request a product</h1>
         <p className="text-ink/70 text-lg max-w-xl leading-relaxed">
-          Don't see something you need? Tell Sunshine what you'd like to refill.
-          Every request is read personally — popular asks become the next products added.
+          Don't see something you need? Tell our team what you'd like to refill.
+          Every request is read personally - popular asks become the next products added.
         </p>
       </div>
 
@@ -48,7 +48,7 @@ export default function RequestsPage() {
             <h2 className="font-heading text-lg text-purple-deep mb-2">How it works</h2>
             <ul className="space-y-2 text-sm text-ink/70">
               {[
-                'Sunshine reads every request personally.',
+                'Our team reads every request personally.',
                 'Popular requests get sourced first.',
                 'Leave your email and we\'ll let you know when it\'s available.',
               ].map((item) => (
@@ -62,8 +62,8 @@ export default function RequestsPage() {
 
           <div className="text-sm text-ink/50 text-center">
             See what we currently carry →{' '}
-            <Link href="/refills" className="text-purple hover:underline">
-              Refills & Prices
+            <Link href="/schedule" className="text-purple hover:underline">
+              Popup Schedule
             </Link>
           </div>
         </div>
@@ -71,3 +71,4 @@ export default function RequestsPage() {
     </div>
   );
 }
+

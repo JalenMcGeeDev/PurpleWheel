@@ -11,7 +11,7 @@ export function generateICS(popup: Popup): string {
   const uid = `${popup.id}@purplewheel.store`;
 
   const description = [
-    'The Purple Wheel — mobile refillery',
+    'The Purple Wheel - mobile refillery',
     popup.notes,
     'Reserve ahead at purplewheel.store/reserve',
   ]
@@ -29,10 +29,11 @@ export function generateICS(popup: Popup): string {
     `DTSTAMP:${now}`,
     `DTSTART:${start}`,
     `DTEND:${end}`,
-    `SUMMARY:${popup.title} — The Purple Wheel`,
+    `SUMMARY:${popup.title} - The Purple Wheel`,
     `LOCATION:${popup.address}`,
     `DESCRIPTION:${description}`,
     'END:VEVENT',
     'END:VCALENDAR',
   ].join('\r\n');
 }
+

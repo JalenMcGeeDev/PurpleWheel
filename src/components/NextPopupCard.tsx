@@ -60,7 +60,7 @@ export default function NextPopupCard({ popup }: NextPopupCardProps) {
             </Link>
           ) : (
             <span className="flex-1 text-center px-5 py-3 bg-lilac text-purple-deeper font-semibold rounded-xl text-sm">
-              Pre-orders closed — walk-ups welcome
+              Pre-orders closed - walk-ups welcome
             </span>
           )}
           <Link
@@ -80,3 +80,4 @@ export default function NextPopupCard({ popup }: NextPopupCardProps) {
     </div>
   );
 }
+

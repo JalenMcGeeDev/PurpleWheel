@@ -10,6 +10,7 @@ export interface Popup {
   preordersEnabled: boolean;
   preorderCutoff: string;
   status: 'scheduled' | 'cancelled';
+  isPublic: boolean;
   geo?: { lat: number; lng: number };
 }
 

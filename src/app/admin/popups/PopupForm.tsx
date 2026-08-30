@@ -22,6 +22,7 @@ const EMPTY: Omit<Popup, 'id'> = {
   preordersEnabled: true,
   preorderCutoff: '',
   status: 'scheduled',
+  isPublic: true,
 };
 
 export default function PopupForm({ popup, onSuccess }: PopupFormProps) {
@@ -153,6 +154,27 @@ export default function PopupForm({ popup, onSuccess }: PopupFormProps) {
         <span className="text-sm font-medium text-ink">Pre-orders enabled</span>
       </label>
 
+      <div className="bg-lilac/20 rounded-xl p-4 flex items-start gap-3">
+        <button
+          type="button"
+          onClick={() => set('isPublic', !form.isPublic)}
+          className={`shrink-0 w-11 h-6 rounded-full relative transition-colors ${form.isPublic ? 'bg-purple' : 'bg-lilac'}`}
+          aria-pressed={form.isPublic}
+        >
+          <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${form.isPublic ? 'translate-x-5' : 'translate-x-0.5'}`} />
+        </button>
+        <div>
+          <p className="text-sm font-medium text-ink">
+            {form.isPublic ? 'Public popup' : 'Private popup'}
+          </p>
+          <p className="text-xs text-ink/50 mt-0.5">
+            {form.isPublic
+              ? 'Visible on the homepage and schedule page.'
+              : 'Only visible in admin - for partner communities.'}
+          </p>
+        </div>
+      </div>
+
       <div>
         <label className={labelCls} htmlFor="pf-notes">Notes <span className="text-ink/40">(optional)</span></label>
         <textarea id="pf-notes" rows={2} className={inputCls + ' resize-none'} value={form.notes ?? ''}
@@ -177,3 +199,4 @@ export default function PopupForm({ popup, onSuccess }: PopupFormProps) {
     </form>
   );
 }
+

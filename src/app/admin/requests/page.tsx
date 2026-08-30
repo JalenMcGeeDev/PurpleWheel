@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import { getProductRequests } from '../../../lib/db';
 
 export const metadata: Metadata = {
-  title: 'Product Requests — Admin',
+  title: 'Product Requests - Admin',
   robots: { index: false, follow: false },
 };
 
@@ -17,7 +17,7 @@ export default async function AdminRequestsPage() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <p className="text-xs font-semibold uppercase tracking-widest text-purple mb-1">Admin</p>
       <h1 className="font-heading text-3xl text-purple-deep mb-2">Product Requests</h1>
-      <p className="text-sm text-ink/60 mb-8">{requests.length} request{requests.length !== 1 ? 's' : ''} total — newest first.</p>
+      <p className="text-sm text-ink/60 mb-8">{requests.length} request{requests.length !== 1 ? 's' : ''} total - newest first.</p>
 
       <div className="grid gap-4">
         {requests.map((r) => (
@@ -54,3 +54,4 @@ export default async function AdminRequestsPage() {
     </div>
   );
 }
+

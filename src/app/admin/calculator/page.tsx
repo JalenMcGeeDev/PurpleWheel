@@ -6,7 +6,7 @@ import { getProducts, getAllPopups } from '../../../lib/db';
 import Calculator from './Calculator';
 
 export const metadata: Metadata = {
-  title: 'Price Calculator — Admin',
+  title: 'Price Calculator - Admin',
   robots: { index: false, follow: false },
 };
 
@@ -34,3 +34,4 @@ export default async function CalculatorPage() {
     </div>
   );
 }
+
