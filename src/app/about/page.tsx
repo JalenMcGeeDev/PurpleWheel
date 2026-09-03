@@ -64,10 +64,6 @@ export default function AboutPage() {
             you get exactly the amount you need, and you end up with one jar you use forever
             instead of a recycling bin full of things you hope get recycled.
           </p>
-          <p>
-            I'm not asking anyone to overhaul their life. Just: next time you run out of dish
-            soap, try filling the same bottle instead of buying a new one.
-          </p>
         </div>
       </section>
 
