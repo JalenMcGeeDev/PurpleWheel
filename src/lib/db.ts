@@ -1,6 +1,29 @@
 import { getSupabase } from './supabase';
 import type { Reservation, HostInquiry, Product, Popup, ProductRequest, POSTransaction, Terminal } from '../types';
 
+// ── Email Signups ─────────────────────────────────────────────────────────────
+
+export async function saveEmailSignup(email: string, source = 'homepage'): Promise<void> {
+  const { error } = await getSupabase()
+    .from('email_signups')
+    .upsert({ email, source }, { onConflict: 'email', ignoreDuplicates: true });
+  if (error) throw new Error(error.message);
+}
+
+export async function getEmailSignups(): Promise<{ id: string; email: string; source: string; createdAt: string }[]> {
+  const { data, error } = await getSupabase()
+    .from('email_signups')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) throw new Error(error.message);
+  return (data ?? []).map((row: Record<string, unknown>) => ({
+    id: row.id as string,
+    email: row.email as string,
+    source: row.source as string,
+    createdAt: row.created_at as string,
+  }));
+}
+
 // ── Reservations ─────────────────────────────────────────────────────────────
 
 export async function saveReservation(reservation: Reservation): Promise<void> {

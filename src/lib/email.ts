@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import type { Reservation, Popup, HostInquiry } from '../types';
 import { format } from 'date-fns';
 
-const getResend = () => new Resend(process.env.RESEND_API_KEY);
+export const getResend = () => new Resend(process.env.RESEND_API_KEY);
 const FROM = 'The Purple Wheel <noreply@purplewheel.store>';
 const SUNSHINE = 'sunshine.alv5@gmail.com';
 

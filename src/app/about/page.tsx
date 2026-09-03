@@ -43,20 +43,10 @@ export default function AboutPage() {
       <section className="space-y-5 text-ink/80 leading-relaxed mb-12">
         <h2 className="font-heading text-2xl text-purple-deep">The origin</h2>
         <p>
-          The name came from the two things I love most: the color purple (obviously) and the
-          idea of a wheel - something that keeps moving, keeps coming back, keeps showing up
-          in your neighborhood. The logo is a wheel. The van is purple. The name stuck.
-        </p>
-        <p>
-          I launched in 2024 with a handful of pantry staples and a farmers market booth.
-          Within a few months I was getting messages from apartment managers, office HR teams,
-          and local shops asking if I could come to them. That's when I understood what this
-          could be.
-        </p>
-        <p>
-          Now The Purple Wheel serves Raleigh, Durham, and Chapel Hill. I run every popup
-          myself, I know most of my regulars by name, and I still get a small thrill every
-          time someone refills a jar they've been using for two years.
+          The name came from the two things I love most: the color purple and the idea of a
+          wheel - something that keeps moving, keeps coming back, keeps showing up in your
+          neighborhood. The Purple Wheel launched in 2026 with a handful of pantry staples,
+          and we're excited to keep growing our offerings, and our partners!
         </p>
       </section>
 

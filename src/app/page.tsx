@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import NextPopupCard from '../components/NextPopupCard';
+import EmailSignupForm from '../components/EmailSignupForm';
 
 export const dynamic = 'force-dynamic';
 import { getUpcomingPopups } from '../lib/db';
@@ -161,25 +162,7 @@ export default async function HomePage() {
           Get notified when new popup dates are added. No spam - just dates, locations, and
           occasional new products.
         </p>
-        <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="#" method="POST">
-          {/* Honeypot */}
-          <input type="text" name="_trap" className="absolute opacity-0 h-0 w-0 pointer-events-none" aria-hidden="true" tabIndex={-1} autoComplete="off" />
-          <label htmlFor="signup-email" className="sr-only">Email address</label>
-          <input
-            id="signup-email"
-            type="email"
-            name="email"
-            required
-            placeholder="your@email.com"
-            className="flex-1 border border-lilac rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple"
-          />
-          <button
-            type="submit"
-            className="px-6 py-3 bg-purple text-white font-semibold rounded-xl hover:bg-purple-deep transition-colors"
-          >
-            Notify me
-          </button>
-        </form>
+        <EmailSignupForm />
         <p className="text-xs text-ink/40 mt-3">
           Or follow{' '}
           <a
