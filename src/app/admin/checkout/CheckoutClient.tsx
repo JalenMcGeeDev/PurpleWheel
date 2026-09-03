@@ -306,7 +306,7 @@ export default function CheckoutClient({ products, popups }: Props) {
                 const val = amounts[product.id] ?? '';
                 const amount = parseFloat(val);
                 const lineTotal = !isNaN(amount) && amount > 0
-                  ? amount * product.pricePerUnit * (1 - discountRate)
+                  ? amount * product.pricePerUnit
                   : null;
                 return (
                   <div key={product.id} className="flex items-center gap-4 px-5 py-3 border-b border-lilac/30 last:border-0">
