@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getEmailSignups } from '../../../../lib/db';
+import { getEmailSignups } from '../../../lib/db';
 import EmailListClient from './EmailListClient';
 
 export const metadata: Metadata = {
